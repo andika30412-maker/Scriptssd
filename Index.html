@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Script Hub Roblox 🔥 - DARK_X Collection 2026</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0a0a15;
+      color: #e0e0ff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(135deg, #1a0033, #000033);
+      padding: 20px 15px;
+      text-align: center;
+      border-bottom: 3px solid #00ffff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,255,255,0.2);
+    }
+    h1 {
+      font-size: 2.2rem;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: glow 3s infinite alternate;
+    }
+    @keyframes glow { 0% { text-shadow: 0 0 10px #00ffff; } 100% { text-shadow: 0 0 30px #ff00ff; } }
+    .search-container {
+      margin: 20px auto;
+      max-width: 600px;
+      position: relative;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 15px 20px 15px 50px;
+      font-size: 1.1rem;
+      border: 2px solid #444;
+      border-radius: 50px;
+      background: #111122;
+      color: #fff;
+      outline: none;
+      transition: all 0.4s;
+    }
+    #searchInput:focus {
+      border-color: #00ffff;
+      box-shadow: 0 0 20px rgba(0,255,255,0.5);
+    }
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #00ffff;
+      font-size: 1.4rem;
+    }
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding: 15px;
+      background: rgba(0,0,0,0.4);
+    }
+    .cat-btn {
+      padding: 10px 20px;
+      background: #1a1a2e;
+      border: 1px solid #444;
+      border-radius: 30px;
+      color: #ccc;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: bold;
+    }
+    .cat-btn.active, .cat-btn:hover {
+      background: linear-gradient(45deg, #00ffff, #ff00ff);
+      color: #000;
+      transform: scale(1.08);
+      box-shadow: 0 0 15px rgba(0,255,255,0.6);
+    }
+    .script-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .script-card {
+      background: #111122;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #333366;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s forwards;
+    }
+    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+    .script-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      border-color: #00ffff;
+      box-shadow: 0 15px 40px rgba(0,255,255,0.3);
+    }
+    .card-header {
+      background: linear-gradient(135deg, #1e0033, #000d33);
+      padding: 15px;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #00ffff;
+    }
+    .card-body {
+      padding: 15px;
+    }
+    .card-desc {
+      font-size: 0.95rem;
+      color: #aaa;
+      margin-bottom: 15px;
+      min-height: 60px;
+    }
+    .copy-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .copy-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255,0,255,0.7);
+    }
+    .copy-btn.copied {
+      background: #00ff00;
+      color: #000;
+    }
+    #noResults {
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 1.4rem;
+      color: #888;
+      display: none;
+    }
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: #0a0a15;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity 0.6s;
+    }
+    .loader.hidden { opacity:0; pointer-events:none; }
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #00ffff;
+      border-top: 6px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform:rotate(0deg); } 100% { transform:rotate(360deg); } }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 0.9rem;
+      border-top: 1px solid #222;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      .script-grid { grid-template-columns: 1fr; padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <header>
+    <h1>🔥 DARK_X Script Hub Roblox 2026 🔥</h1>
+    <p>Kumpulan script OP, keyless, auto farm, hub terbaik – HP friendly cuy!</p>
+  </header>
+
+  <div class="search-container">
+    <i class="fas fa-search search-icon"></i>
+    <input type="text" id="searchInput" placeholder="Cari script... Blox Fruits, Arsenal, Universal, dll" autocomplete="off"/>
+  </div>
+
+  <div class="categories" id="categories">
+    <!-- Kategori dibuat dinamis via JS -->
+  </div>
+
+  <div id="noResults">Waduh cuy, script yang lu cari ga ada... coba keyword lain 😈</div>
+
+  <div class="script-grid" id="scriptGrid"></div>
+
+  <footer>
+    © 2026 DARK_X Hub • Semua script fiktif & untuk edukasi • Gas terus bro!
+  </footer>
+
+  <script>
+    // Data script (lu bisa tambah banyak banget di sini)
+    const scriptsData = [
+      { name: "Redz Hub Blox Fruits", desc: "Auto Farm, Auto Raid, Auto CDK, No Key", category: "Blox Fruits", load: "loadstring(game:HttpGet('https://raw.githubusercontent.com/realredz/BloxFruits/main/Source.lua'))()" },
+      { name: "Speed Hub X Universal", desc: "Auto Farm semua game, ESP, Aimbot", category: "Universal", load: "loadstring(game:HttpGet('https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua'))()" },
+      { name: "Kaitun OP Auto Everything", desc: "Auto Godhuman, CDK, Race V4, Mirage", category: "Blox Fruits", load: "loadstring(game:HttpGet('https://raw.githubusercontent.com/verudous/Xero-Hub/main/kaitun.lua'))()" },
+      { name: "Hoho Hub Mobile", desc: "Auto Farm Chest, Mirage, Boss", category: "Blox Fruits", load: "loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI.lua'))()" },
+      { name: "Arsenal Aimbot + ESP", desc: "Wallhack, Silent Aim, No Recoil", category: "Arsenal", load: "loadstring(game:HttpGet('https://raw.githubusercontent.com/xxxx/arsenal/main/op'))()" },
+      { name: "Universal Admin Panel", desc: "Infinite Yield + CMDX style", category: "Universal", load: "loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()" },
+      // Tambahin sendiri ribuan kalau mau, format sama
+    ];
+
+    const categories = [...new Set(scriptsData.map(s => s.category))];
+    const catContainer = document.getElementById('categories');
+    categories.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'cat-btn';
+      btn.textContent = cat;
+      btn.dataset.cat = cat;
+      btn.onclick = () => filterByCategory(cat);
+      catContainer.appendChild(btn);
+    });
+
+    function renderScripts(filtered) {
+      const grid = document.getElementById('scriptGrid');
+      grid.innerHTML = '';
+      if (filtered.length === 0) {
+        document.getElementById('noResults').style.display = 'block';
+        return;
+      }
+      document.getElementById('noResults').style.display = 'none';
+
+      filtered.forEach((script, index) => {
+        const card = document.createElement('div');
+        card.className = 'script-card';
+        card.style.animationDelay = `${index * 0.1}s`;
+
+        card.innerHTML = `
+          <div class="card-header">${script.name}</div>
+          <div class="card-body">
+            <p class="card-desc">${script.desc}</p>
+            <button class="copy-btn" onclick="copyScript('${script.load.replace(/'/g, "\\'")}', this)">Copy Script</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function copyScript(code, btn) {
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = "Copied! ✅";
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = "Copy Script";
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    function filterByCategory(cat) {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      const filtered = scriptsData.filter(s => s.category === cat);
+      renderScripts(filtered);
+    }
+
+    // Search real-time
+    document.getElementById('searchInput').addEventListener('input', e => {
+      const term = e.target.value.toLowerCase().trim();
+      const filtered = scriptsData.filter(s => 
+        s.name.toLowerCase().includes(term) || 
+        s.desc.toLowerCase().includes(term) ||
+        s.category.toLowerCase().includes(term)
+      );
+      renderScripts(filtered);
+      // Reset active category kalau search
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    });
+
+    // Initial render semua
+    renderScripts(scriptsData);
+
+    // Loader hilang setelah load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 800);
+    });
+  </script>
+</body>
+  </html>
